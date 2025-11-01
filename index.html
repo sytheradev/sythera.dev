@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>sythera.dev</title>
+    
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='64' fill='%23000000'/%3E%3Cpath fill='%23ffffff' d='M256.7,259.9l-122.9,103c-3.3,2.8-8.4,0.4-8.4-3.9v-40.1c0-1.5,0.7-2.9,1.9-3.9l70.3-59l-70.3-59c-1.2-0.9-1.9-2.4-1.9-3.9V153c0-4.4,5.1-6.7,8.4-3.9l122.9,103C259.2,254.1,259.2,257.9,256.7,259.9z M386.6,359c0,2.8-2.2,5.1-4.8,5.1H263.4c-2.6,0-4.8-2.3-4.8-5.1v-30.7c0-2.8,2.2-5.1,4.8-5.1h118.4c2.6,0,4.8,2.3,4.8,5.1V359z'/%3E%3C/svg%3E" type="image/svg+xml">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="sythera.dev">
+    <meta property="og:description" content="sythera.dev">
+    <meta property="og:image" content="ico/opengraph.png">
+    <meta property="og:url" content="https://sythera.dev">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="sythera.dev">
+    <meta name="twitter:description" content="sythera.dev">
+    <meta name="twitter:image" content="ico/opengraph.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@300;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="loading">
+    <div class="loader-wrapper" id="loader">
+        <div class="loader-content">
+            <div class="loader-text">LOADING</div>
+            <div class="loader-bars">
+                <div class="loader-bar"></div>
+                <div class="loader-bar"></div>
+                <div class="loader-bar"></div>
+                <div class="loader-bar"></div>
+                <div class="loader-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content" id="mainContent">
+        <canvas id="canvas"></canvas>
+        <div class="pixels"></div>
+        <div class="grid"></div>
+        <div class="vignette"></div>
+
+        <div class="language-switcher">
+            <button class="lang-btn active" data-lang="en">EN</button>
+            <button class="lang-btn" data-lang="uk">UK</button>
+        </div>
+
+        <div class="corner corner-tl"></div>
+        <div class="corner corner-tr"></div>
+        <div class="corner corner-bl"></div>
+        <div class="corner corner-br"></div>
+
+        <div class="floating-shapes">
+            <div class="shape shape-ring shape-1"></div>
+            <div class="shape shape-ring shape-2"></div>
+            <div class="shape shape-triangle shape-3"></div>
+            <div class="shape shape-square shape-4"></div>
+        </div>
+
+        <div class="container">
+            <div class="glitch-wrapper">
+                <h1 class="title" data-text="sythera.dev">sythera.dev</h1>
+            </div>
+            <div class="divider"></div>
+            <div class="telegram-link" data-url="tg://resolve?domain=sythera">
+                <span data-i18n="telegram">Telegram Channel</span>
+            </div>
+        </div>
+
+        <section class="content-section">
+            <h2 class="section-title" data-i18n="services">services</h2>
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-title" data-i18n="websitesTitle">Websites</div>
+                    <div class="card-description" data-i18n="websitesDesc">
+                        Modern, responsive websites with beautiful design and high performance. From landing pages to complex web platforms.
+                    </div>
+                    <div class="card-tags">
+                        <span class="tag">Vercel</span>
+                        <span class="tag">Tailwind</span>
+                        <span class="tag">Next.js</span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title" data-i18n="botsTitle">Telegram Bots</div>
+                    <div class="card-description" data-i18n="botsDesc">
+                        Convenient bots for automation, sales, customer support, and business processes. Integration with websites and payment systems — including cryptocurrency.
+                    </div>
+                    <div class="card-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">aiogram</span>
+                        <span class="tag">PostgreSQL</span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title" data-i18n="appsTitle">Servers</div>
+                    <div class="card-description" data-i18n="appsDesc">
+                        Professional setup and administration of servers for bots and websites. VPS/Dedicated configuration, security, auto-backups, and 24/7 monitoring.
+                    </div>
+                    <div class="card-tags">
+                        <span class="tag">VPS</span>
+                        <span class="tag">Ubuntu</span>
+                        <span class="tag">Docker</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2 class="section-title" data-i18n="about">about</h2>
+            <div class="about-content">
+                <p class="about-text" data-i18n="aboutText">
+                    We are a team of developers that creates effective digital solutions for business. Our expertise covers web development, Telegram bots, and server infrastructure. We prioritize code quality, security, and performance in every project, delivering reliable, fast, and scalable solutions for our clients. With years of experience in modern technologies, we constantly seek new approaches, optimize processes, and implement innovations so the result not only meets expectations but exceeds them.
+                </p>
+            </div>
+        </section>
+    </div>
+
+    <div class="scroll-indicator" id="scrollIndicator">
+        <div class="scroll-text" data-i18n="scrollDown">scroll down</div>
+        <div class="scroll-arrow"></div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-title" data-i18n="footerDev">Development</div>
+                <div class="footer-text">
+                    <span data-i18n="footerDevText">Websites, Bots & Servers<br>for your business</span>
+                </div>
+            </div>
+
+            <div class="footer-divider"></div>
+
+            <div class="footer-section">
+                <div class="footer-title" data-i18n="footerStats">Statistics</div>
+                <div class="footer-text">
+                    <span data-i18n="footerProjects">50+ Projects</span><br>
+                    <span data-i18n="footerClients">30+ Clients</span><br>
+                    <span data-i18n="footerYears">3+ Years Experience</span>
+                </div>
+            </div>
+
+            <div class="footer-divider"></div>
+
+            <div class="footer-section">
+                <div class="footer-title" data-i18n="footerContact">Contact</div>
+                <div class="footer-text">
+                    <a href="tg://resolve?domain=sytheradev" class="footer-link">@sytheradev</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
