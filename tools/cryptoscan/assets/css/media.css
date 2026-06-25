@@ -1,0 +1,313 @@
+/* Copyright © sythera.dev, 2021-2140. All rights reserved. */
+
+@media (max-width: 768px) {
+    .corner {
+        display: none !important;
+    }
+
+    .container {
+        padding: 20px;
+        margin: 0 auto;
+        border-radius: 8px;
+    }
+
+    .title {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+
+    .input-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    #addressInput {
+        width: 100%;
+        font-size: 13px;
+    }
+
+    button {
+        width: 100%;
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+
+    .blockchain-selector {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .blockchain-selector label {
+        font-size: 13px;
+    }
+
+    #blockchainSelect {
+        width: 100%;
+        font-size: 13px;
+    }
+
+    .result-section {
+        padding: 15px;
+    }
+
+    .result-section h3 {
+        font-size: 16px;
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .balance-item span {
+        font-size: 20px;
+    }
+
+    .info-item strong {
+        font-size: 12px;
+    }
+
+    .info-item span {
+        font-size: 13px;
+    }
+
+    .transaction-item {
+        padding: 10px;
+        font-size: 12px;
+    }
+
+    .network-container {
+        height: 450px;
+    }
+
+    .viz-overlay-controls {
+        top: 15px;
+        right: 15px;
+        gap: 8px;
+    }
+
+    .viz-control-btn {
+        width: 40px;
+        height: 40px;
+        min-height: 40px;
+        font-size: 20px;
+    }
+
+    .viz-control-btn.viz-reset {
+        font-size: 24px;
+    }
+
+    .viz-legend {
+        top: 15px;
+        left: 15px;
+        padding: 12px;
+        gap: 10px;
+    }
+
+    .viz-legend-item {
+        font-size: 11px;
+        gap: 8px;
+    }
+
+    .viz-legend-dot {
+        width: 12px;
+        height: 12px;
+    }
+
+    .viz-instructions {
+        bottom: 15px;
+        padding: 10px 20px;
+        font-size: 11px;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .stat-item {
+        padding: 15px;
+    }
+
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .transaction-controls {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .pagination-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .load-all-btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .corner {
+        display: none !important;
+    }
+
+    .container {
+        padding: 15px;
+        margin: 0 auto;
+        border-radius: 8px;
+    }
+
+    .title {
+        font-size: 18px;
+        margin-bottom: 15px;
+    }
+
+    #addressInput {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    button {
+        font-size: 13px;
+        padding: 7px 14px;
+    }
+
+    .blockchain-selector label {
+        font-size: 12px;
+    }
+
+    #blockchainSelect {
+        font-size: 12px;
+    }
+
+    .result-section {
+        padding: 12px;
+    }
+
+    .result-section h3 {
+        font-size: 14px;
+    }
+
+    .info-item strong {
+        font-size: 11px;
+    }
+
+    .info-item span {
+        font-size: 12px;
+    }
+    
+    .balance-item span {
+        font-size: 18px;
+    }
+
+    .transaction-item {
+        padding: 8px;
+        font-size: 11px;
+    }
+
+    .network-container {
+        height: 350px;
+    }
+
+    .viz-overlay-controls {
+        top: 10px;
+        right: 10px;
+        gap: 6px;
+    }
+
+    .viz-control-btn {
+        width: 36px;
+        height: 36px;
+        min-height: 36px;
+        font-size: 18px;
+    }
+
+    .viz-control-btn.viz-reset {
+        font-size: 22px;
+    }
+
+    .viz-legend {
+        top: 10px;
+        left: 10px;
+        padding: 10px;
+        gap: 8px;
+    }
+
+    .viz-legend-item {
+        font-size: 10px;
+        gap: 6px;
+    }
+
+    .viz-legend-dot {
+        width: 10px;
+        height: 10px;
+        border-width: 1.5px;
+    }
+
+    .viz-instructions {
+        bottom: 10px;
+        padding: 8px 16px;
+        font-size: 10px;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .stat-item {
+        padding: 12px;
+    }
+
+    .stat-item strong {
+        font-size: 10px;
+    }
+
+    .stat-item span {
+        font-size: 15px;
+    }
+
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .transaction-controls {
+        width: 100%;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .filter-group {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .filter-group select {
+        flex: 1;
+    }
+
+    .pagination-container {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .pagination-btn,
+    .load-all-btn {
+        width: 100%;
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+
+    .page-info {
+        font-size: 12px;
+    }
+}
+
+/* Copyright © sythera.dev, 2021-2140. All rights reserved. */
+

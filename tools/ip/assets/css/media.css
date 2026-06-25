@@ -1,0 +1,52 @@
+/* Copyright © sythera.dev, 2021-2140. All rights reserved. */
+
+
+@media (max-width: 768px) {
+    .corner {
+        display: none !important;
+    }
+
+    html, body {
+        font-size: 14px;
+    }
+
+    .columns-container-top,
+    .columns-container-bottom {
+        gap: 12px;
+        width: 100%;
+    }
+
+    .column {
+        padding: 16px;
+    }
+
+    h3, h4 {
+        font-size: 16px;
+        text-align: center;
+    }
+
+    p {
+        font-size: 13px;
+        word-break: break-word;
+    }
+}
+
+@media (max-width: 480px) {
+    .corner {
+        display: none !important;
+    }
+
+    .column {
+        padding: 14px;
+    }
+
+    h3, h4 {
+        font-size: 14px;
+    }
+
+    p {
+        font-size: 12px;
+    }
+}
+
+/* Copyright © sythera.dev, 2021-2140. All rights reserved. */

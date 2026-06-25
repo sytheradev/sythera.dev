@@ -1,0 +1,131 @@
+<!-- Copyright © sythera.dev, 2021-2140. All rights reserved. -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover">
+    <meta name="theme-color" content="#000">
+
+    <meta property="og:site_name" content="encode.decode/">
+    <meta property="og:description" content="Hello, world! UVIgY29kZQ==">
+    <meta property="og:image:width" content="1920">
+    <meta property="og:image:height" content="1080">
+    <meta property="og:image" content="libraries/yeah.png">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="libraries/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="libraries/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="libraries/icons/favicon-16x16.png">
+    <link rel="manifest" href="libraries/icons/site.webmanifest">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@300;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/background.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/media.css">
+    <link rel="stylesheet" href="../../assets/css/tools-layout.css">
+    <link rel="stylesheet" href="../../assets/css/tools-modal.css">
+
+    <script src="../../assets/javascript/background.js"></script>
+    <script src="../../keybindings.js"></script>
+    <script src="../../assets/javascript/language.js"></script>
+    <script src="../../assets/javascript/tools-modal.js"></script>
+    <script src="assets/javascript/script.js"></script>
+    <script src="libraries/javascript/base64.min.js"></script>
+    <script src="libraries/javascript/pako.min.js"></script>
+
+    <title>Encode/Decode Tools</title>
+</head>
+
+<body>
+    <canvas id="canvas"></canvas>
+    <div class="pixels"></div>
+    <div class="grid"></div>
+    <div class="vignette"></div>
+
+    <div class="corner corner-tl"></div>
+    <div class="corner corner-tr"></div>
+    <div class="corner corner-bl"></div>
+    <div class="corner corner-br"></div>
+
+    <div class="floating-shapes">
+        <div class="shape shape-ring shape-1"></div>
+        <div class="shape shape-ring shape-2"></div>
+        <div class="shape shape-triangle shape-3"></div>
+        <div class="shape shape-square shape-4"></div>
+    </div>
+
+    <div id="errorNotification" class="notification error">
+        <span id="errorMessage"></span>
+        <button class="closeButton">×</button>
+    </div>
+
+    <div id="tooltip" class="tooltip">Click to copy</div>
+
+    <div class="wrapper">
+        <div class="container">
+            <textarea id="inputText" placeholder="Enter text..."></textarea>
+            <input type="text" id="secretKey" placeholder="Enter secret key" style="display: none;">
+
+            <div class="buttonContainer">
+                <button id="encodeButton">Encode</button>
+                <button id="decodeButton">Decode</button>
+            </div>
+
+            <div class="methodContainer">
+                <div class="custom-select-wrapper">
+                    <select id="formatSelect" onchange="updateTitle()" style="display: none;">
+                        <optgroup label="Encode/Decode:">
+                            <option value="base64">Base64</option>
+                            <option value="binary">Binary</option>
+                            <option value="hex">Hex</option>
+                            <option value="morse">Morse Code</option>
+                            <option value="json">JSON</option>
+                            <option value="uri">URI</option>
+                            <option value="uricomponent">URI Component</option>
+                        </optgroup>
+
+                        <optgroup label="Encrypt/Decrypt:">
+                            <option value="xor">XOR</option>
+                        </optgroup>
+
+                        <optgroup label="Compress/Decompress:">
+                            <option value="gzip">Gzip</option>
+                        </optgroup>
+                    </select>
+                    <div class="custom-select" id="customFormatSelect">
+                        <div class="custom-select-trigger">
+                            <span class="custom-select-value">Base64</span>
+                            <span class="custom-select-arrow">▼</span>
+                        </div>
+                        <div class="custom-select-options">
+                            <div class="custom-select-optgroup">Encode/Decode:</div>
+                            <div class="custom-select-option" data-value="base64">Base64</div>
+                            <div class="custom-select-option" data-value="binary">Binary</div>
+                            <div class="custom-select-option" data-value="hex">Hex</div>
+                            <div class="custom-select-option" data-value="morse">Morse Code</div>
+                            <div class="custom-select-option" data-value="json">JSON</div>
+                            <div class="custom-select-option" data-value="uri">URI</div>
+                            <div class="custom-select-option" data-value="uricomponent">URI Component</div>
+                            <div class="custom-select-optgroup">Encrypt/Decrypt:</div>
+                            <div class="custom-select-option" data-value="xor">XOR</div>
+                            <div class="custom-select-optgroup">Compress/Decompress:</div>
+                            <div class="custom-select-option" data-value="gzip">Gzip</div>
+                        </div>
+                    </div>
+                </div>
+
+                <button id="liveModeButton">Encode Live Mode 🔴</button>
+            </div>
+
+            <textarea id="outputText" placeholder="Result..." readonly></textarea>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<!-- Copyright © sythera.dev, 2021-2140. All rights reserved. -->

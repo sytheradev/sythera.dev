@@ -1,0 +1,117 @@
+/* Copyright © sythera.dev, 2021-2140. All rights reserved. */
+
+
+*,
+*::before,
+*::after {
+    -webkit-user-drag: none;
+    -webkit-touch-callout: none;
+    box-sizing: border-box;
+    scrollbar-width: thin;
+    scrollbar-color: #0f1a24 #0a1219;
+}
+
+html,
+body {
+    font-family: 'JetBrains Mono', monospace;
+    background: #0c0c0c;
+    color: rgba(255, 255, 255, 0.9);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+    margin: 0;
+    position: relative;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.15) rgba(12, 12, 12, 0.5);
+}
+
+body::-webkit-scrollbar {
+    width: 8px;
+}
+
+body::-webkit-scrollbar-track {
+    background: rgba(12, 12, 12, 0.5);
+}
+
+body::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 4px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.wrapper {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.columns-container-top,
+.columns-container-bottom {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-width: 1200px;
+    gap: 20px;
+}
+
+.columns-container-top {
+    margin-top: 0;
+}
+
+.columns-container-bottom {
+    margin-bottom: 0;
+}
+
+.column {
+    flex: 1;
+    width: 100%;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    margin: 0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 255, 255, 0.02);
+    text-align: left;
+    box-sizing: border-box;
+}
+
+h3,
+h4 {
+    color: rgba(255, 255, 255, 0.9);
+    font-family: 'JetBrains Mono', monospace;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 5px;
+    margin-top: 0;
+}
+
+p {
+    color: rgba(255, 255, 255, 0.7);
+    font-family: 'JetBrains Mono', monospace;
+    width: 100%;
+    margin: 10px 0;
+    line-height: 1.6;
+}
+
+strong {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.country-flag {
+    width: 28px;
+    height: auto;
+    vertical-align: middle;
+    border-radius: 3px;
+    display: inline-block;
+}
+
+/* Copyright © sythera.dev, 2021-2140. All rights reserved. */

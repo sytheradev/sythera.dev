@@ -1,0 +1,102 @@
+/* Copyright © sythera.dev, 2021-2140. All rights reserved. */
+
+
+@media (max-width: 768px) {
+    .corner {
+        display: none !important;
+    }
+
+    .container {
+        padding: 15px;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 8px;
+    }
+
+    textarea,
+    #outputText {
+        height: 150px;
+        min-height: 150px;
+        font-size: 14px;
+    }
+
+    .buttonContainer {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    button {
+        width: 100%;
+        margin-right: 0;
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+
+    .methodContainer {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .custom-select-wrapper {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .custom-select {
+        width: 100%;
+    }
+
+    #liveModeButton {
+        width: 100%;
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .corner {
+        display: none !important;
+    }
+
+    .container {
+        padding: 12px;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 8px;
+    }
+
+    textarea,
+    #outputText {
+        height: 120px;
+        min-height: 120px;
+        font-size: 13px;
+    }
+
+    button {
+        font-size: 13px;
+        padding: 7px 14px;
+    }
+
+    .custom-select-trigger {
+        font-size: 13px;
+        padding: 8px 30px 8px 10px;
+    }
+
+    .custom-select-option {
+        font-size: 13px;
+        padding: 10px 12px;
+    }
+
+    .custom-select-optgroup {
+        font-size: 11px;
+        padding: 6px 12px;
+    }
+
+    #liveModeButton {
+        font-size: 13px;
+        padding: 7px 14px;
+    }
+}
+
+/* Copyright © sythera.dev, 2021-2140. All rights reserved. */

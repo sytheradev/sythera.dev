@@ -1,0 +1,259 @@
+<!-- Copyright © sythera.dev, 2021-2140. All rights reserved. -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover">
+    <meta name="theme-color" content="#000">
+
+    <meta property="og:site_name" content="cryptoscan/">
+    <meta property="og:description" content="Scan cryptocurrency addresses across multiple blockchains">
+    <meta property="og:image:width" content="1920">
+    <meta property="og:image:height" content="1080">
+    <meta property="og:image" content="libraries/yeah.png">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='64' fill='%23000000'/%3E%3Cpath fill='%23ffffff' d='M256.7,259.9l-122.9,103c-3.3,2.8-8.4,0.4-8.4-3.9v-40.1c0-1.5,0.7-2.9,1.9-3.9l70.3-59l-70.3-59c-1.2-0.9-1.9-2.4-1.9-3.9V153c0-4.4,5.1-6.7,8.4-3.9l122.9,103C259.2,254.1,259.2,257.9,256.7,259.9z M386.6,359c0,2.8-2.2,5.1-4.8,5.1H263.4c-2.6,0-4.8-2.3-4.8-5.1v-30.7c0-2.8,2.2-5.1,4.8-5.1h118.4c2.6,0,4.8,2.3,4.8,5.1V359z'/%3E%3C/svg%3E" type="image/svg+xml">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@300;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/background.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/media.css">
+    <link rel="stylesheet" href="../../assets/css/tools-layout.css">
+    <link rel="stylesheet" href="../../assets/css/tools-modal.css">
+
+    <script src="../../assets/javascript/background.js"></script>
+    <script src="../../keybindings.js"></script>
+    <script src="../../assets/javascript/language.js"></script>
+    <script src="../../assets/javascript/tools-modal.js"></script>
+    <script src="assets/javascript/script.js"></script>
+
+    <title>Crypto Address Scanner</title>
+</head>
+
+<body>
+    <canvas id="canvas"></canvas>
+    <div class="pixels"></div>
+    <div class="grid"></div>
+    <div class="vignette"></div>
+
+    <div class="corner corner-tl"></div>
+    <div class="corner corner-tr"></div>
+    <div class="corner corner-bl"></div>
+    <div class="corner corner-br"></div>
+
+    <div class="floating-shapes">
+        <div class="shape shape-ring shape-1"></div>
+        <div class="shape shape-ring shape-2"></div>
+        <div class="shape shape-triangle shape-3"></div>
+        <div class="shape shape-square shape-4"></div>
+    </div>
+
+    <div id="errorNotification" class="notification error">
+        <span id="errorMessage"></span>
+        <button class="closeButton">×</button>
+    </div>
+
+    <div class="wrapper">
+        <div class="container">
+            <h1 class="title">Crypto Address Scanner</h1>
+
+            <div class="input-container">
+                <input type="text" id="addressInput" placeholder="Enter cryptocurrency address...">
+                <button id="scanButton">Scan</button>
+            </div>
+
+            <div class="blockchain-selector">
+                <label for="blockchainSelect">Blockchain:</label>
+                <div class="custom-select-wrapper">
+                    <select id="blockchainSelect" style="display: none;">
+                        <option value="auto">Auto Detect</option>
+                        <option value="tron">Tron (TRX)</option>
+                        <option value="solana">Solana (SOL)</option>
+                    </select>
+                    <div class="custom-select" id="customBlockchainSelect">
+                        <div class="custom-select-trigger">
+                            <span class="custom-select-value">Auto Detect</span>
+                            <span class="custom-select-arrow">▼</span>
+                        </div>
+                        <div class="custom-select-options">
+                            <div class="custom-select-option" data-value="auto">Auto Detect</div>
+                            <div class="custom-select-option" data-value="tron">Tron (TRX)</div>
+                            <div class="custom-select-option" data-value="solana">Solana (SOL)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="resultsContainer" class="results-container" style="display: none;">
+                <div class="result-section">
+                    <h3>Address Information</h3>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <strong>Address:</strong>
+                            <span id="resultAddress" class="address-text"></span>
+                        </div>
+                        <div class="info-item">
+                            <strong>Blockchain:</strong>
+                            <span id="resultBlockchain"></span>
+                        </div>
+                        <div class="info-item">
+                            <strong id="nativeBalanceLabel">TRX Available:</strong>
+                            <span id="resultTrxAvailable"></span>
+                        </div>
+                        <div class="info-item tron-only">
+                            <strong>TRX Staked:</strong>
+                            <span id="resultTrxStaked"></span>
+                        </div>
+                        <div class="info-item">
+                            <strong>Transactions:</strong>
+                            <span id="resultTransactions"></span>
+                        </div>
+                        <div class="info-item">
+                            <strong>Transfers:</strong>
+                            <span id="resultTransfers"></span>
+                        </div>
+                        <div class="info-item tron-only">
+                            <strong>Total Bandwidth:</strong>
+                            <span id="resultBandwidth"></span>
+                        </div>
+                        <div class="info-item tron-only">
+                            <strong>Total Energy:</strong>
+                            <span id="resultEnergy"></span>
+                        </div>
+                    </div>
+                    <div class="info-divider"></div>
+                    <div class="balance-container">
+                        <div class="info-item balance-item">
+                            <strong>Total Balance:</strong>
+                            <span id="resultBalance"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="result-section" id="tokensSection" style="display: none;">
+                    <h3 id="tokensSectionTitle">Tokens</h3>
+                    <div id="tokensList" class="tokens-list"></div>
+                </div>
+
+                <div class="result-section" id="visualizationSection" style="display: none !important;">
+                    <h3>Transaction Flow</h3>
+                    <div class="visualization-wrapper">
+                        <div class="network-container">
+                            <div id="networkVisualization"></div>
+                            <div class="viz-overlay-controls">
+                                <button id="zoomInBtn" class="viz-control-btn" title="Zoom In">+</button>
+                                <button id="zoomOutBtn" class="viz-control-btn" title="Zoom Out">−</button>
+                                <button id="resetViewBtn" class="viz-control-btn viz-reset" title="Reset View">⟲</button>
+                            </div>
+                            <div class="viz-legend">
+                                <div class="viz-legend-item">
+                                    <span class="viz-legend-dot main"></span>
+                                    <span>Main</span>
+                                </div>
+                                <div class="viz-legend-item">
+                                    <span class="viz-legend-dot incoming"></span>
+                                    <span>From</span>
+                                </div>
+                                <div class="viz-legend-item">
+                                    <span class="viz-legend-dot outgoing"></span>
+                                    <span>To</span>
+                                </div>
+                            </div>
+                            <div class="viz-instructions">
+                                <span>🖱️ Drag to move • Scroll to zoom • Click node to explore</span>
+                            </div>
+                        </div>
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <strong>Total Volume</strong>
+                                <span id="totalVolume">-</span>
+                            </div>
+                            <div class="stat-item">
+                                <strong>Unique Addresses</strong>
+                                <span id="uniqueAddresses">-</span>
+                            </div>
+                            <div class="stat-item">
+                                <strong>First Activity</strong>
+                                <span id="firstTransaction">-</span>
+                            </div>
+                            <div class="stat-item">
+                                <strong>Last Activity</strong>
+                                <span id="lastTransaction">-</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="result-section">
+                    <div class="section-header">
+                        <h3>Transaction History</h3>
+                        <div class="transaction-controls">
+                            <div class="filter-group">
+                                <label for="sortSelect">Sort:</label>
+                                <div class="custom-select-wrapper">
+                                    <select id="sortSelect" style="display: none;">
+                                        <option value="newest">Newest First</option>
+                                        <option value="oldest">Oldest First</option>
+                                        <option value="value-high">Highest Value</option>
+                                        <option value="value-low">Lowest Value</option>
+                                    </select>
+                                    <div class="custom-select" id="customSortSelect">
+                                        <div class="custom-select-trigger">
+                                            <span class="custom-select-value">Newest First</span>
+                                            <span class="custom-select-arrow">▼</span>
+                                        </div>
+                                        <div class="custom-select-options">
+                                            <div class="custom-select-option" data-value="newest">Newest First</div>
+                                            <div class="custom-select-option" data-value="oldest">Oldest First</div>
+                                            <div class="custom-select-option" data-value="value-high">Highest Value</div>
+                                            <div class="custom-select-option" data-value="value-low">Lowest Value</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="filter-group">
+                                <label for="limitSelect">Per Page:</label>
+                                <div class="custom-select-wrapper">
+                                    <select id="limitSelect" style="display: none;">
+                                        <option value="10">10</option>
+                                        <option value="25">25</option>
+                                        <option value="50">50</option>
+                                        <option value="100">100</option>
+                                    </select>
+                                    <div class="custom-select" id="customLimitSelect">
+                                        <div class="custom-select-trigger">
+                                            <span class="custom-select-value">10</span>
+                                            <span class="custom-select-arrow">▼</span>
+                                        </div>
+                                        <div class="custom-select-options">
+                                            <div class="custom-select-option" data-value="10">10</div>
+                                            <div class="custom-select-option" data-value="25">25</div>
+                                            <div class="custom-select-option" data-value="50">50</div>
+                                            <div class="custom-select-option" data-value="100">100</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="transactionList" class="transaction-list"></div>
+                    <div class="pagination-container">
+                        <button id="prevPage" class="pagination-btn" disabled>Previous</button>
+                        <span id="pageInfo" class="page-info">Page 1 of 1</span>
+                        <button id="nextPage" class="pagination-btn" disabled>Next</button>
+                        <button id="loadAllBtn" class="load-all-btn">Load All Transactions</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<!-- Copyright © sythera.dev, 2021-2140. All rights reserved. -->
+

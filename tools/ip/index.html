@@ -1,0 +1,132 @@
+<!-- Copyright © sythera.dev, 2021-2140. All rights reserved. -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover">
+    <meta name="theme-color" content="#000">
+
+    <meta property="og:site_name" content="ip/">
+    <meta property="og:description" content="Hello, world! UVIgY29kZQ==">
+    <meta property="og:image:width" content="1920">
+    <meta property="og:image:height" content="1080">
+    <meta property="og:image" content="libraries/yeah.png">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="libraries/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="libraries/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="libraries/icons/favicon-16x16.png">
+    <link rel="manifest" href="libraries/icons/site.webmanifest">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@300;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/background.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/media.css">
+    <link rel="stylesheet" href="../../assets/css/tools-layout.css">
+    <link rel="stylesheet" href="../../assets/css/tools-modal.css">
+
+    <script src="../../assets/javascript/background.js"></script>
+    <script src="../../keybindings.js"></script>
+    <script src="../../assets/javascript/language.js"></script>
+    <script src="../../assets/javascript/tools-modal.js"></script>
+    <script src="assets/javascript/script.js"></script>
+
+    <title>IP Address Details</title>
+</head>
+
+<body class="tool-ip">
+    <canvas id="canvas"></canvas>
+    <div class="pixels"></div>
+    <div class="grid"></div>
+    <div class="vignette"></div>
+
+    <div class="corner corner-tl"></div>
+    <div class="corner corner-tr"></div>
+    <div class="corner corner-bl"></div>
+    <div class="corner corner-br"></div>
+
+    <div class="floating-shapes">
+        <div class="shape shape-ring shape-1"></div>
+        <div class="shape shape-ring shape-2"></div>
+        <div class="shape shape-triangle shape-3"></div>
+        <div class="shape shape-square shape-4"></div>
+    </div>
+
+    <div class="wrapper">
+        <div class="columns-container-top">
+            <div class="column">
+                <h3>IP Address Details</h3>
+                <div class="test">
+                    <p><strong>IP:</strong> <span id="ip" class="fetching-animation">Fetching...</span></p>
+                    <p><strong>Type:</strong> <span id="type" class="fetching-animation">Fetching...</span></p>
+                </div>
+            </div>
+            <div class="column">
+                <h3>Connection</h3>
+                <div class="test">
+                    <p><strong>ASN:</strong> <span id="asn" class="fetching-animation">Fetching...</span></p>
+                    <p><strong>Organization:</strong> <span id="org" class="fetching-animation">Fetching...</span></p>
+                    <p><strong>ISP:</strong> <span id="isp" class="fetching-animation">Fetching...</span></p>
+                    <p><strong>Domain:</strong> <span id="domain" class="fetching-animation">Fetching...</span></p>
+                </div>
+            </div>
+            <div class="column">
+                <h3>Geography</h3>
+                <div class="test">
+                    <p><strong>Flag:</strong> <span id="flag" class="fetching-animation">Fetching...</span></p>
+                    <p><strong>Country:</strong> <span id="country" class="fetching-animation">Fetching...</span> [<span id="country-code" class="fetching-animation"></span>]</p>
+                    <p><strong>Continent:</strong> <span id="continent" class="fetching-animation">Fetching...</span> [<span id="continent-code" class="fetching-animation"></span>]</p>
+                    <p><strong>Region:</strong> <span id="region" class="fetching-animation">Fetching...</span> [<span id="region-code" class="fetching-animation"></span>]</p>
+                    <p><strong>City:</strong> <span id="city" class="fetching-animation">Fetching...</span></p>
+                    <p><strong>Borders:</strong> <span id="borders" class="fetching-animation">Fetching...</span></p>
+                    <p><strong>longitude:</strong> <span id="longitude" class="fetching-animation">Fetching...</span></p>
+                    <p><strong>latitude:</strong> <span id="latitude" class="fetching-animation">Fetching...</span></p>
+                    <p><strong>Postal:</strong> <span id="postal" class="fetching-animation">Fetching...</span></p>
+                    <p><strong>Calling Code:</strong> +<span id="calling_code" class="fetching-animation">Fetching...</span></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="columns-container-bottom">
+            <div class="column">
+                <h3>Currency</h3>
+                <div class="test">
+                    <p><strong>Name:</strong> <span id="currency-name" class="fetching-animation">Fetching...</span></p>
+                    <p><strong>Code:</strong> <span id="currency-code" class="fetching-animation">Fetching...</span></p>
+                    <p><strong>Symbol:</strong> <span id="currency-symbol" class="fetching-animation">Fetching...</span></p>
+                    <p><strong>Plural:</strong> <span id="currency-plural" class="fetching-animation">Fetching...</span></p>
+                    <p><strong>Exchange Rate:</strong> <span id="currency-rate" class="fetching-animation">Fetching...</span></p>
+                </div>
+            </div>
+            <div class="column">
+                <h3>Security</h3>
+                <div class="test">
+                    <p><strong>Anonymous:</strong> <span id="security-anonymous" class="fetching-animation">Fetching...</span></p>
+                    <p><strong>Proxy:</strong> <span id="security-proxy" class="fetching-animation">Fetching...</span></p>
+                    <p><strong>VPN:</strong> <span id="security-vpn" class="fetching-animation">Fetching...</span></p>
+                    <p><strong>Tor:</strong> <span id="security-tor" class="fetching-animation">Fetching...</span></p>
+                    <p><strong>Hosting:</strong> <span id="security-hosting" class="fetching-animation">Fetching...</span></p>
+                </div>
+            </div>
+            <div class="column">
+                <h3>Timezone</h3>
+                <div class="test">
+                    <p><strong>ID:</strong> <span id="timezone-id" class="fetching-animation">Fetching...</span></p>
+                    <p><strong>Abbreviation:</strong> <span id="timezone-abbr" class="fetching-animation">Fetching...</span></p>
+                    <p><strong>Is DST:</strong> <span id="timezone-dst" class="fetching-animation">Fetching...</span></p>
+                    <p><strong>Offset:</strong> <span id="timezone-offset" class="fetching-animation">Fetching...</span></p>
+                    <p><strong>UTC:</strong> <span id="timezone-utc" class="fetching-animation">Fetching...</span></p>
+                    <p><strong>Current Time:</strong> <span id="timezone-current" class="fetching-animation">Fetching...</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<!-- Copyright © sythera.dev, 2021-2140. All rights reserved. -->

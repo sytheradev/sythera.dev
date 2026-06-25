@@ -1,0 +1,390 @@
+/* Copyright © sythera.dev, 2021-2140. All rights reserved. */
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    font-family: 'JetBrains Mono', monospace;
+    background: #0c0c0c;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    min-height: 100vh;
+    width: 100%;
+}
+
+body {
+    min-height: 100vh;
+    position: relative;
+}
+
+.wrapper {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 255, 255, 0.02);
+    max-width: 960px;
+    width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 20px;
+    position: relative;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 0;
+    font-size: 24px;
+    color: rgba(255, 255, 255, 0.9);
+    font-family: 'JetBrains Mono', monospace;
+}
+
+input[type="file"] {
+    margin: 15px 0;
+    background: rgba(255, 255, 255, 0.02);
+    color: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    border-radius: 5px;
+    font-family: 'JetBrains Mono', monospace;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+input[type="file"]::file-selector-button {
+    background: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'JetBrains Mono', monospace;
+    transition: all 0.3s ease;
+}
+
+input[type="file"]::file-selector-button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+
+.file-input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.file-input {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    padding: 0;
+    width: 100%;
+    box-sizing: border-box;
+    min-height: auto;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+
+.output-container {
+    width: 100%;
+    margin-left: 0;
+}
+
+.image-preview-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    width: 100%;
+    min-width: 0;
+    height: 320px;
+    min-height: 220px;
+    max-height: 420px;
+    cursor: not-allowed;
+    position: relative;
+    overflow: hidden;
+}
+
+.no-image-message {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 16px;
+    font-family: 'JetBrains Mono', monospace;
+    text-align: center;
+    white-space: nowrap;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: block;
+}
+
+.image-preview {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    border-radius: 8px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    object-fit: contain;
+}
+
+
+button {
+    background: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    padding: 10px 20px;
+    min-height: 40px;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: 'JetBrains Mono', monospace;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+button:disabled {
+    background: rgba(255, 255, 255, 0.02);
+    border-color: rgba(255, 255, 255, 0.1);
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.download-button {
+    background: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    padding: 10px 20px;
+    min-height: 40px;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: 'JetBrains Mono', monospace;
+    transition: all 0.3s ease;
+    display: inline-block;
+    margin: 10px auto;
+    white-space: nowrap;
+    box-sizing: border-box;
+}
+
+.download-button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+
+
+.exif-info {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 16px;
+    border-radius: 8px;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 14px;
+    font-family: 'JetBrains Mono', monospace;
+    box-sizing: border-box;
+}
+
+.exif-info h3 {
+    color: rgba(255, 255, 255, 0.9);
+    font-family: 'JetBrains Mono', monospace;
+    margin-bottom: 12px;
+    font-size: 16px;
+}
+
+.exif-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: auto;
+    max-height: 420px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.15) rgba(12, 12, 12, 0.5);
+}
+
+.exif-table-wrapper::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.exif-table-wrapper::-webkit-scrollbar-track {
+    background: rgba(12, 12, 12, 0.5);
+}
+
+.exif-table-wrapper::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 4px;
+}
+
+.exif-table-wrapper::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+#exifTable {
+    width: 100%;
+    min-width: 640px;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+#exifTable th,
+#exifTable td {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 10px 12px;
+    text-align: left;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    line-height: 1.5;
+    vertical-align: top;
+}
+
+#exifTable th {
+    background: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.9);
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+#exifTable th:nth-child(1),
+#exifTable td:nth-child(1) {
+    width: 26%;
+}
+
+#exifTable th:nth-child(2),
+#exifTable td:nth-child(2) {
+    width: 54%;
+    word-break: break-word;
+    white-space: pre-wrap;
+}
+
+#exifTable th:nth-child(3),
+#exifTable td:nth-child(3) {
+    width: 20%;
+    white-space: nowrap;
+}
+
+#exifTable td {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: rgba(255, 255, 255, 0.02);
+    color: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    padding: 10px;
+    min-height: 40px;
+    font-family: 'JetBrains Mono', monospace;
+    cursor: pointer;
+    font-size: 16px;
+    outline: none;
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+select:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+select::-webkit-scrollbar {
+    width: 8px;
+}
+
+select::-webkit-scrollbar-track {
+    background: rgba(12, 12, 12, 0.5);
+}
+
+select::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 4px;
+}
+
+select::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+
+.drag-over {
+    background: rgba(100, 200, 255, 0.1) !important;
+    border-color: rgba(100, 200, 255, 0.5) !important;
+    border-style: dashed !important;
+    transform: scale(1.02);
+    transition: all 0.3s ease;
+}
+
+.drag-over::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(100, 200, 255, 0.05);
+    border-radius: 8px;
+    animation: pulse 1.5s ease-in-out infinite;
+    z-index: 1;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.3;
+    }
+    50% {
+        opacity: 0.6;
+    }
+}
+
+.container.drag-over {
+    background: rgba(100, 200, 255, 0.05) !important;
+    border-color: rgba(100, 200, 255, 0.3) !important;
+}
+
+/* Copyright © sythera.dev, 2021-2140. All rights reserved. */
