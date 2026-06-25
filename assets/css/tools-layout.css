@@ -35,7 +35,6 @@ body {
 body > canvas,
 body > .pixels,
 body > .grid,
-body > .vignette,
 body > .corner,
 body > .floating-shapes,
 body > .notification {
