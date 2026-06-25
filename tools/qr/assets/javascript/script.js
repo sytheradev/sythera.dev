@@ -59,7 +59,6 @@ document.addEventListener('DOMContentLoaded', function() {
         elements.copyButton.addEventListener('click', handleCopy);
         elements.sizeInput.addEventListener('input', updateButtonsState);
         elements.closeButton.addEventListener('click', closeNotification);
-        window.addEventListener('devtoolschange', redirectToYoutube);
         window.addEventListener('keydown', handleKeydown); 
 
         elements.decreaseButton.addEventListener('mousedown', event => {
@@ -98,10 +97,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function handleSizeInputKeyPress(event) {
         if (event.key === 'Enter') validateSizeInput();
-    }
-
-    function redirectToYoutube() {
-        window.location.href = 'https://youtu.be/dQw4w9WgXcQ';
     }
 
     function showErrorNotification(message, isSuccess = false) {

@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', function() {
         liveModeButton: document.getElementById('liveModeButton'),
         encodeButton: document.getElementById('encodeButton'),
         decodeButton: document.getElementById('decodeButton'),
-        footerText: document.getElementById('footerText'),
         errorNotification: document.getElementById('errorNotification'),
         errorMessage: document.getElementById('errorMessage'),
         closeButton: document.querySelector('.closeButton'),
@@ -156,8 +155,6 @@ document.addEventListener('DOMContentLoaded', function() {
         elements.outputText.addEventListener('mousemove', updateTooltipPosition);
         elements.outputText.addEventListener('mouseout', hideTooltip);
         elements.formatSelect.addEventListener('change', handleFormatChange);
-        elements.footerText.addEventListener('click', redirectToYoutube);
-        window.addEventListener('devtoolschange', redirectToYoutube);
         window.addEventListener('keydown', handleKeydown);
     }
 
@@ -202,10 +199,6 @@ document.addEventListener('DOMContentLoaded', function() {
         if (tooltip) {
             tooltip.style.display = 'none';
         }
-    }
-
-    function redirectToYoutube() {
-        window.location.href = 'https://youtu.be/dQw4w9WgXcQ';
     }
     
     function showErrorNotification(message, isSuccess = false) {

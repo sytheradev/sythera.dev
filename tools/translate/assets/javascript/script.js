@@ -413,15 +413,7 @@ document.addEventListener('DOMContentLoaded', function() {
         elements.targetLang.addEventListener('change', translateText);
         elements.sourceLang.addEventListener('change', translateText);
         elements.closeButton.addEventListener('click', closeNotification);
-        if (elements.footerText) {
-            elements.footerText.addEventListener('click', redirectToYoutube);
-        }
-        window.addEventListener('devtoolschange', redirectToYoutube);
         window.addEventListener('keydown', handleKeydown);
-    }
-
-    function redirectToYoutube() {
-        window.location.href = 'https://youtu.be/dQw4w9WgXcQ';
     }
 
     function handleKeydown(event) {

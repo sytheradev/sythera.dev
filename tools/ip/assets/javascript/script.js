@@ -55,7 +55,6 @@ document.addEventListener('DOMContentLoaded', function() {
     loadIpDetails();
 
     function setupEventListeners() {
-        window.addEventListener('devtoolschange', () => window.location.href = 'https://youtu.be/dQw4w9WgXcQ');
         window.addEventListener('keydown', handleKeydown);
     }
 

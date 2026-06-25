@@ -315,14 +315,6 @@ document.addEventListener('DOMContentLoaded', function() {
         elements.outputMessage.textContent = message;
     }
 
-    function setupEventListeners() {
-        window.addEventListener('devtoolschange', redirectToYoutube);
-    }
-
-    function redirectToYoutube() {
-        window.location.href = 'https://youtu.be/dQw4w9WgXcQ';
-    }
-
     function setupDragAndDrop() {
         const container = document.querySelector('.container');
         const fileInput = elements.imageInput;
@@ -377,7 +369,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     setupDragAndDrop();
-    setupEventListeners();
 });
 
 // Copyright © sythera.dev, 2021-2140. All rights reserved.

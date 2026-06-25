@@ -98,7 +98,6 @@ document.addEventListener('DOMContentLoaded', function() {
         elements.title.addEventListener('mouseover', showTooltip);
         elements.title.addEventListener('mousemove', updateTooltipPosition);
         elements.title.addEventListener('mouseout', hideTooltip);
-        window.addEventListener('devtoolschange', redirectToYoutube);
         window.addEventListener('resize', updateFontSize);
         window.addEventListener('keydown', handleKeydown);
     }
@@ -139,10 +138,6 @@ document.addEventListener('DOMContentLoaded', function() {
             event.preventDefault();
             window.location.href = url;
         }
-    }
-
-    function redirectToYoutube() {
-        window.location.href = 'https://youtu.be/dQw4w9WgXcQ';
     }
 
     function handleLengthRangeInput() {
