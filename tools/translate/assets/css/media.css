@@ -37,7 +37,7 @@
         gap: 10px;
     }
 
-    button:not(#swapButton):not(.lang-btn) {
+    button:not(#swapButton):not(.lang-btn):not(.tools-modal-close) {
         width: 100%;
         margin-right: 0;
         font-size: 14px;
@@ -97,7 +97,7 @@
         margin: 0 8px 6px 0;
     }
 
-    button:not(#swapButton):not(.lang-btn) {
+    button:not(#swapButton):not(.lang-btn):not(.tools-modal-close) {
         font-size: 13px;
         padding: 7px 14px;
     }
