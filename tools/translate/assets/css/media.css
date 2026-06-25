@@ -1,0 +1,127 @@
+/* Copyright © sythera.dev, 2021-2140. All rights reserved. */
+
+
+@media (max-width: 768px) {
+    .corner {
+        display: none !important;
+    }
+
+    .container {
+        padding: 15px;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 8px;
+    }
+
+    .textarea-row {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    #inputText,
+    #outputText {
+        height: 250px;
+        min-height: 250px;
+        font-size: 14px;
+        padding: 8px 35px 35px 8px;
+    }
+
+    .textarea-overlay #charCount {
+        font-size: 13px;
+        margin: 0 10px 8px 0;
+    }
+
+    .buttonContainer {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    button:not(#swapButton):not(.lang-btn) {
+        width: 100%;
+        margin-right: 0;
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+
+    #swapButton.icon-button {
+        width: 40px;
+        align-self: center;
+    }
+
+    .buttonContainer .custom-select-wrapper {
+        width: 100%;
+        min-width: 100%;
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .buttonContainer .custom-select-wrapper:last-of-type {
+        margin-bottom: 0;
+    }
+
+    .custom-select-options {
+        width: 100%;
+        min-width: 100%;
+        left: 0;
+        transform: none;
+    }
+
+    .custom-select-options.active {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .corner {
+        display: none !important;
+    }
+
+    .container {
+        padding: 12px;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 8px;
+    }
+
+    #inputText,
+    #outputText {
+        height: 200px;
+        min-height: 200px;
+        font-size: 13px;
+        padding: 6px 30px 30px 6px;
+    }
+
+    .textarea-overlay #charCount {
+        font-size: 12px;
+        margin: 0 8px 6px 0;
+    }
+
+    button:not(#swapButton):not(.lang-btn) {
+        font-size: 13px;
+        padding: 7px 14px;
+    }
+
+    #swapButton.icon-button {
+        width: 40px;
+        align-self: center;
+    }
+
+    .buttonContainer .custom-select-wrapper {
+        width: 100%;
+        min-width: 100%;
+    }
+
+    .custom-select-options {
+        width: 100%;
+        min-width: 100%;
+        left: 0;
+        transform: none;
+    }
+
+    .custom-select-options.active {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Copyright © sythera.dev, 2021-2140. All rights reserved. */

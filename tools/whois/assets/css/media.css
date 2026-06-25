@@ -1,0 +1,112 @@
+/* Copyright © sythera.dev, 2021-2140. All rights reserved. */
+
+
+@media (max-width: 768px) {
+    .corner {
+        display: none !important;
+    }
+
+    .container {
+        padding: 20px;
+        border-radius: 8px;
+    }
+
+    .title {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+
+    .input-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    #domainInput {
+        width: 100%;
+        font-size: 13px;
+    }
+
+    button {
+        width: 100%;
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+
+    .result-section {
+        padding: 15px;
+    }
+
+    .result-section h3 {
+        font-size: 16px;
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .info-item strong {
+        font-size: 12px;
+    }
+
+    .info-item span {
+        font-size: 13px;
+    }
+
+    .raw-whois {
+        font-size: 11px;
+        padding: 12px;
+        max-height: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .corner {
+        display: none !important;
+    }
+
+    .container {
+        padding: 15px;
+        border-radius: 8px;
+    }
+
+    .title {
+        font-size: 18px;
+        margin-bottom: 15px;
+    }
+
+    #domainInput {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    button {
+        font-size: 13px;
+        padding: 7px 14px;
+    }
+
+    .result-section {
+        padding: 12px;
+    }
+
+    .result-section h3 {
+        font-size: 14px;
+    }
+
+    .info-item strong {
+        font-size: 11px;
+    }
+
+    .info-item span {
+        font-size: 12px;
+    }
+
+    .raw-whois {
+        font-size: 10px;
+        padding: 10px;
+        max-height: 250px;
+    }
+}
+
+/* Copyright © sythera.dev, 2021-2140. All rights reserved. */
+

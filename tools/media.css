@@ -1,0 +1,60 @@
+/* Copyright © sythera.dev, 2021-2140. All rights reserved. */
+
+@media (max-width: 768px) {
+    .tools-header {
+        margin-bottom: 24px;
+        padding: 0 4px;
+    }
+
+    .tools-subtitle {
+        font-size: 0.75rem;
+        line-height: 1.5;
+        max-width: 28rem;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .tools-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        width: 100%;
+    }
+
+    .tool-card {
+        padding: 18px 16px;
+        min-height: 44px;
+    }
+
+    .home-link {
+        padding: 10px 12px;
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+    }
+
+    .language-switcher {
+        top: max(10px, env(safe-area-inset-top));
+        right: max(10px, env(safe-area-inset-right));
+    }
+
+    .lang-btn {
+        font-size: 0.7rem;
+        padding: 8px 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .tools-title {
+        font-size: 1.65rem;
+    }
+
+    .tool-card-name {
+        font-size: 1rem;
+    }
+
+    .tool-card-description {
+        font-size: 0.78rem;
+    }
+}
+
+/* Copyright © sythera.dev, 2021-2140. All rights reserved. */

@@ -1,0 +1,278 @@
+/* Copyright © sythera.dev, 2021-2140. All rights reserved. */
+
+
+*,
+*::before,
+*::after {
+    -webkit-user-drag: none;
+    -webkit-touch-callout: none;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-size: 16px;
+    line-height: 1.5;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.9);
+    background: #0c0c0c;
+    font-family: 'JetBrains Mono', monospace;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.15) rgba(12, 12, 12, 0.5);
+    position: relative;
+}
+
+body::-webkit-scrollbar {
+    width: 8px;
+}
+
+body::-webkit-scrollbar-track {
+    background: rgba(12, 12, 12, 0.5);
+}
+
+body::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 4px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 10;
+}
+
+.container {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 900px;
+    padding: 30px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 255, 255, 0.02);
+}
+
+.title {
+    margin-top: 0;
+    margin-bottom: 25px;
+    color: rgba(255, 255, 255, 0.9);
+    font-family: 'JetBrains Mono', monospace;
+    text-align: center;
+    font-size: 24px;
+    min-height: 1.5em;
+    line-height: 1.5;
+}
+
+.input-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+#domainInput {
+    flex: 1;
+    height: 40px;
+    min-height: 40px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    outline: none;
+    background: rgba(255, 255, 255, 0.02);
+    color: rgba(255, 255, 255, 0.9);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+#domainInput::placeholder {
+    font-family: 'JetBrains Mono', monospace;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+#domainInput:focus {
+    border-color: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    min-height: 40px;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    font-family: 'JetBrains Mono', monospace;
+    background: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.9);
+    cursor: pointer;
+    box-sizing: border-box;
+    white-space: nowrap;
+}
+
+button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.results-container {
+    margin-top: 25px;
+}
+
+.result-section {
+    margin-bottom: 25px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+}
+
+.result-section h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: rgba(255, 255, 255, 0.9);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 18px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 10px;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.info-item strong {
+    color: rgba(255, 255, 255, 0.7);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+}
+
+.info-item span {
+    color: rgba(255, 255, 255, 0.9);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    word-break: break-all;
+}
+
+.domain-text {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.raw-whois {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 5px;
+    padding: 15px;
+    max-height: 400px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.15) rgba(12, 12, 12, 0.5);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.7);
+    white-space: pre-wrap;
+    word-break: break-all;
+    line-height: 1.6;
+}
+
+.raw-whois::-webkit-scrollbar {
+    width: 8px;
+}
+
+.raw-whois::-webkit-scrollbar-track {
+    background: rgba(12, 12, 12, 0.5);
+}
+
+.raw-whois::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 4px;
+}
+
+.raw-whois::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.loading {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.6);
+    font-family: 'JetBrains Mono', monospace;
+    padding: 20px;
+}
+
+.notification {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    padding: 15px;
+    border-radius: 5px;
+    z-index: 1000;
+    color: white;
+    font-size: 16px;
+    font-family: 'JetBrains Mono', monospace;
+    background-color: #e74c3c;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: left;
+    padding-right: 40px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+}
+
+.notification.success {
+    background-color: #27ae60;
+}
+
+.notification.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.closeButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px;
+    margin-right: 0px;
+    font-size: 20px;
+    border: none;
+    transition: background-color 0.3s ease;
+    background: none;
+    color: white;
+    cursor: pointer;
+    min-height: auto;
+}
+
+.closeButton:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+}
+
+/* Copyright © sythera.dev, 2021-2140. All rights reserved. */
+

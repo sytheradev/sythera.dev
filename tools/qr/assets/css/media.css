@@ -1,0 +1,163 @@
+/* Copyright © sythera.dev, 2021-2140. All rights reserved. */
+
+
+@media (max-width: 768px) {
+    .corner {
+        display: none !important;
+    }
+
+    .container {
+        flex-direction: column;
+        max-width: 100%;
+        padding: 15px;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 8px;
+    }
+
+    .divider {
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        margin: 15px 0;
+        width: 100%;
+    }
+
+    .left-section,
+    .right-section {
+        flex: none;
+        min-width: 0;
+        padding: 12px;
+        width: 100%;
+    }
+
+    .qr-code-container {
+        width: 250px;
+        height: 250px;
+        margin: 15px auto;
+        padding: 10px;
+    }
+
+    .title {
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+    }
+
+    input[type="text"] {
+        font-size: 14px;
+        height: 38px;
+        min-height: 38px;
+        margin-bottom: 15px;
+        padding: 8px;
+    }
+
+    button {
+        font-size: 14px;
+        padding: 8px 16px;
+        min-height: 38px;
+    }
+
+    .buttonContainer {
+        flex-direction: row;
+        gap: 10px;
+        margin-bottom: 15px;
+        justify-content: center;
+    }
+
+    .buttonContainer button {
+        flex: 1;
+        max-width: 200px;
+        margin-right: 0;
+    }
+
+    .sizeContainer {
+        margin-top: 15px;
+        flex-wrap: wrap;
+        gap: 8px;
+        justify-content: center;
+    }
+
+    .sizeContainer label {
+        font-size: 14px;
+    }
+
+    #noQrMessage {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .corner {
+        display: none !important;
+    }
+
+    .container {
+        padding: 12px;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 8px;
+    }
+
+    .left-section,
+    .right-section {
+        padding: 10px;
+    }
+
+    .divider {
+        margin: 12px 0;
+    }
+
+    .qr-code-container {
+        width: 220px;
+        height: 220px;
+        margin: 12px auto;
+        padding: 8px;
+    }
+
+    .title {
+        font-size: 1.1rem;
+        margin-bottom: 12px;
+    }
+
+    input[type="text"] {
+        font-size: 13px;
+        height: 36px;
+        min-height: 36px;
+        margin-bottom: 12px;
+        padding: 6px;
+    }
+
+    button {
+        font-size: 13px;
+        padding: 7px 14px;
+        min-height: 36px;
+    }
+
+    .buttonContainer {
+        flex-direction: row;
+        gap: 8px;
+        margin-bottom: 12px;
+        justify-content: center;
+    }
+
+    .buttonContainer button {
+        flex: 1;
+        max-width: 180px;
+        margin-right: 0;
+    }
+
+    .sizeContainer {
+        margin-top: 12px;
+        gap: 6px;
+        justify-content: center;
+    }
+
+    .sizeContainer label {
+        font-size: 13px;
+    }
+
+    #noQrMessage {
+        font-size: 14px;
+    }
+}
+
+/* Copyright © sythera.dev, 2021-2140. All rights reserved. */

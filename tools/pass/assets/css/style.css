@@ -1,0 +1,434 @@
+/* Copyright © sythera.dev, 2021-2140. All rights reserved. */
+
+
+*,
+*::before,
+*::after {
+    -webkit-user-drag: none;
+    -webkit-touch-callout: none;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    min-height: 100vh;
+    font-size: 16px;
+    line-height: 1.5;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.9);
+    background: #0c0c0c;
+    font-family: 'JetBrains Mono', monospace;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.15) rgba(12, 12, 12, 0.5);
+    position: relative;
+}
+
+body::-webkit-scrollbar {
+    width: 8px;
+}
+
+body::-webkit-scrollbar-track {
+    background: rgba(12, 12, 12, 0.5);
+}
+
+body::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 4px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    position: relative;
+    z-index: 10;
+}
+
+.container {
+    margin: auto;
+    width: 100%;
+    max-width: 600px;
+    padding: 33px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 255, 255, 0.02);
+}
+
+.title {
+    margin-top: 0;
+    color: rgba(255, 255, 255, 0.9);
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.tooltip {
+    position: fixed;
+    z-index: 9999;
+    display: none;
+    background: rgba(12, 12, 12, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.7);
+    padding: 10px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-family: 'JetBrains Mono', monospace;
+    max-width: 300px;
+    line-height: 1.5;
+    pointer-events: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 255, 255, 0.02);
+}
+
+#tooltip {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+    background: none;
+    box-shadow: none;
+}
+
+.passwordContainer {
+    display: flex;
+    align-items: stretch;
+    margin-bottom: 25px;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+}
+
+#passwordField {
+    flex-grow: 1;
+    height: 60px;
+    min-height: 60px;
+    padding: 20px;
+    font-size: 19.5px;
+    border-radius: 0;
+    border: none;
+    outline: none;
+    resize: none;
+    font-family: 'JetBrains Mono', monospace;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.9);
+    box-sizing: border-box;
+}
+
+.icon-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 44px;
+    height: auto;
+    background: transparent;
+    cursor: pointer;
+}
+
+.icon-button img {
+    width: 22px;
+    height: 22px;
+    opacity: 0.45;
+    filter: brightness(0) invert(1);
+    pointer-events: none;
+}
+
+#generateButton,
+#copyButton {
+    cursor: pointer;
+}
+
+.lengthContainer {
+    margin-bottom: 20px;
+}
+
+.length {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5px;
+}
+
+.length label {
+    margin-right: 10px;
+    color: rgba(255, 255, 255, 0.9);
+    font-family: 'JetBrains Mono', monospace;
+}
+
+#lengthInput {
+    width: 30px;
+    min-height: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    text-align: center;
+    outline: none;
+    resize: none;
+    font-family: 'JetBrains Mono', monospace;
+    background: rgba(255, 255, 255, 0.02);
+    color: rgba(255, 255, 255, 0.9);
+    box-sizing: border-box;
+}
+
+#lengthRange {
+    width: 100%;
+    height: 8px;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.05);
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+    position: relative;
+}
+
+#lengthRange::-webkit-slider-thumb {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    -webkit-appearance: none;
+    position: relative;
+    margin-top: -3.5px;
+    transition: background 0.3s ease;
+}
+
+#lengthRange::-webkit-slider-thumb:hover {
+    background: rgba(255, 255, 255, 0.6);
+}
+
+#lengthRange::-webkit-slider-runnable-track {
+    height: 8px;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.05);
+    border: none;
+}
+
+#lengthRange::-moz-range-thumb {
+    width: 15px;
+    height: 15px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+#lengthRange::-moz-range-thumb:hover {
+    background: rgba(255, 255, 255, 0.6);
+}
+
+#lengthRange::-moz-range-track {
+    height: 8px;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+#lengthRange::-ms-thumb {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+}
+
+#lengthRange::-ms-track {
+    height: 8px;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.05);
+    border-color: transparent;
+    color: transparent;
+}
+
+#lengthRange::-ms-fill-lower {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 5px;
+}
+
+#lengthRange::-ms-fill-upper {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 5px;
+}
+
+.optionContainer {
+    display: flex;
+    flex-wrap: no-wrap;
+    justify-content: center;
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    cursor: pointer;
+    white-space: nowrap;
+    color: rgba(255, 255, 255, 0.9);
+    font-family: 'JetBrains Mono', monospace;
+}
+.optionx{
+    margin-right: 0px;
+}
+
+input[type="checkbox"] {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 18px;
+    height: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+    margin-right: 5px;
+    background: rgba(255, 255, 255, 0.02);
+    appearance: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+input[type="checkbox"]:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+input[type="checkbox"]:checked {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+input[type="checkbox"]:checked::after {
+    content: '✔';
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+input[type="number"] {
+    -ms-appearance: none;
+}
+
+
+.notification {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    padding: 15px;
+    border-radius: 5px;
+    z-index: 1000;
+    color: white;
+    font-size: 16px;
+    font-family: 'JetBrains Mono', monospace;
+    background-color: #e74c3c;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: left;
+    padding-right: 40px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+}
+
+.notification.success {
+    background-color: #27ae60;
+}
+
+.notification.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.closeButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px;
+    margin-right: 0px;
+    font-size: 20px;
+    border: none;
+    transition: background-color 0.3s ease;
+    background: none;
+    color: white;
+    cursor: pointer;
+}
+
+.closeButton:hover {
+    background-color: rgba(255, 255, 255, 0.0);
+    border-radius: 50%;
+}
+
+@keyframes bounceInUp {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, 100%, 0);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.bounceInUp {
+    animation-name: bounceInUp;
+    animation-duration: 0.75s;
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+@keyframes shake-container {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+        transform: translateX(-10px);
+    }
+    20%, 40%, 60%, 80% {
+        transform: translateX(10px);
+    }
+}
+
+.shake-container {
+    animation: shake-container 0.5s;
+}
+
+@keyframes shake-title {
+    0%, 100% {
+        transform: translate(0, 0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+        transform: translate(-5px, -1px);
+    }
+    20%, 40%, 60%, 80% {
+        transform: translate(5px, 1px);
+    }
+}
+
+.shake-title {
+    animation: shake-title 0.5s ease-in-out infinite;
+}
+
+
+/* Copyright © sythera.dev, 2021-2140. All rights reserved. */

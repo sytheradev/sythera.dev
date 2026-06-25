@@ -1,0 +1,113 @@
+<!-- Copyright © sythera.dev, 2021-2140. All rights reserved. -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover">
+    <meta name="theme-color" content="#000">
+
+    <meta property="og:site_name" content="pass/">
+    <meta property="og:description" content="Hello, world! UVIgY29kZQ==">
+    <meta property="og:image:width" content="1920">
+    <meta property="og:image:height" content="1080">
+    <meta property="og:image" content="libraries/yeah.png">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="libraries/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="libraries/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="libraries/icons/favicon-16x16.png">
+    <link rel="manifest" href="libraries/icons/site.webmanifest">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@300;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/background.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/media.css">
+    <link rel="stylesheet" href="../../assets/css/tools-layout.css">
+    <link rel="stylesheet" href="../../assets/css/tools-modal.css">
+
+    <script src="../../assets/javascript/background.js"></script>
+    <script src="../../keybindings.js"></script>
+    <script src="../../assets/javascript/language.js"></script>
+    <script src="../../assets/javascript/tools-modal.js"></script>
+    <script src="assets/javascript/script.js"></script>
+
+    <title>Password Generator - сгенерируйте свой забываемый пароль онлайн.</title>
+</head>
+
+<body>
+    <canvas id="canvas"></canvas>
+    <div class="pixels"></div>
+    <div class="grid"></div>
+    <div class="vignette"></div>
+
+    <div class="corner corner-tl"></div>
+    <div class="corner corner-tr"></div>
+    <div class="corner corner-bl"></div>
+    <div class="corner corner-br"></div>
+
+    <div class="floating-shapes">
+        <div class="shape shape-ring shape-1"></div>
+        <div class="shape shape-ring shape-2"></div>
+        <div class="shape shape-triangle shape-3"></div>
+        <div class="shape shape-square shape-4"></div>
+    </div>
+
+    <div id="errorNotification" class="notification error">
+        <span id="errorMessage"></span>
+        <button class="closeButton">×</button>
+    </div>
+
+    <div class="wrapper">
+        <div class="container">
+            <h1 class="title" id="title">
+                Password strength: Strong
+                <span id="tooltip" class="tooltip"></span>
+            </h1>
+
+            <div class="passwordContainer">
+                <input type="text" id="passwordField" readonly>
+                <div class="icon-button" id="generateButton">
+                    <img src="libraries/svg/generateButton.svg" alt="">
+                </div>
+                <div class="icon-button media-copyButton" id="copyButton">
+                    <img src="libraries/svg/copyButton.svg" alt="">
+                </div>
+            </div>
+
+            <div class="lengthContainer">
+                <div class="length">
+                    <label for="lengthInput">Password length:</label>
+                    <input type="number" id="lengthInput" min="4" max="64" value="16" step="1">
+                </div>
+                <input type="range" id="lengthRange" min="4" max="64" value="16" step="1">
+            </div>
+
+            <div class="optionContainer">
+                <label for="uppercase" class="option">
+                    <input type="checkbox" id="uppercase" checked>
+                    Uppercase
+                </label>
+                <label for="lowercase" class="option">
+                    <input type="checkbox" id="lowercase" checked>
+                    Lower case
+                </label>
+                <label for="numbers" class="option">
+                    <input type="checkbox" id="numbers" checked>
+                    Numbers
+                </label>
+                <label for="symbols" class="option optionx">
+                    <input type="checkbox" id="symbols" checked>
+                    Symbols
+                </label>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<!-- Copyright © sythera.dev, 2021-2140. All rights reserved. -->

@@ -1,0 +1,310 @@
+html, body {
+    background: #000000;
+}
+
+canvas, .grid, .vignette, .pixels {
+    will-change: auto;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+.pixels {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.4;
+    background-image: 
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 2px,
+            rgba(255, 255, 255, 0.03) 2px,
+            rgba(255, 255, 255, 0.03) 4px
+        ),
+        repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 2px,
+            rgba(255, 255, 255, 0.03) 2px,
+            rgba(255, 255, 255, 0.03) 4px
+        );
+    background-size: 4px 4px;
+    margin: 0;
+    padding: 0;
+}
+
+.grid {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 
+        50px 50px,
+        50px 50px;
+    background-position: 
+        center center,
+        center center;
+    z-index: 0;
+    opacity: 1;
+    margin: 0;
+    padding: 0;
+}
+
+.vignette {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(ellipse at center, transparent 0%, transparent 20%, rgba(0, 0, 0, 0.4) 70%, rgba(0, 0, 0, 0.7) 100%);
+    z-index: 2;
+    pointer-events: none;
+    margin: 0;
+    padding: 0;
+}
+
+.vignette::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.1);
+    pointer-events: none;
+}
+
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    opacity: 1;
+    pointer-events: none;
+    margin: 0;
+    padding: 0;
+    display: block;
+}
+
+.corner {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    z-index: 5;
+    will-change: transform;
+    backface-visibility: hidden;
+    pointer-events: none;
+    margin: 0;
+    padding: 0;
+}
+
+.corner-tl {
+    top: 30px;
+    left: 30px;
+    border-right: none;
+    border-bottom: none;
+}
+
+.corner-tr {
+    top: 30px;
+    right: 30px;
+    border-left: none;
+    border-bottom: none;
+}
+
+.corner-bl {
+    bottom: 30px;
+    left: 30px;
+    border-right: none;
+    border-top: none;
+}
+
+.corner-br {
+    bottom: 30px;
+    right: 30px;
+    border-left: none;
+    border-top: none;
+}
+
+.floating-shapes {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 3;
+}
+
+.shape {
+    position: absolute;
+    opacity: 0;
+    transition: transform 0.3s ease-out;
+}
+
+.shape.visible {
+    opacity: 0.3;
+}
+
+.shape-ring {
+    width: 100px;
+    height: 100px;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    box-shadow: 
+        0 0 20px rgba(255, 255, 255, 0.2),
+        inset 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+.shape-triangle {
+    width: 0;
+    height: 0;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    border-bottom: 87px solid rgba(255, 255, 255, 0.4);
+    filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.2));
+}
+
+.shape-square {
+    width: 80px;
+    height: 80px;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    transform: rotate(45deg);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.shape-1 {
+    top: 20%;
+    left: 15%;
+    animation: float1 8s ease-in-out infinite;
+}
+
+.shape-2 {
+    top: 60%;
+    right: 20%;
+    animation: float2 10s ease-in-out infinite;
+}
+
+.shape-3 {
+    top: 40%;
+    right: 10%;
+    animation: float3 12s ease-in-out infinite;
+}
+
+.shape-4 {
+    top: 70%;
+    left: 10%;
+    animation: float4 9s ease-in-out infinite;
+}
+
+@keyframes float1 {
+    0%, 100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+    25% {
+        transform: translate(20px, -30px) rotate(90deg);
+    }
+    50% {
+        transform: translate(0, -50px) rotate(180deg);
+    }
+    75% {
+        transform: translate(-20px, -30px) rotate(270deg);
+    }
+}
+
+@keyframes float2 {
+    0%, 100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+    33% {
+        transform: translate(-30px, 20px) rotate(120deg);
+    }
+    66% {
+        transform: translate(-30px, -20px) rotate(240deg);
+    }
+}
+
+@keyframes float3 {
+    0%, 100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+    50% {
+        transform: translate(30px, 40px) rotate(180deg);
+    }
+}
+
+@keyframes float4 {
+    0%, 100% {
+        transform: translate(0, 0) rotate(45deg);
+    }
+    25% {
+        transform: translate(-25px, -25px) rotate(135deg);
+    }
+    50% {
+        transform: translate(-40px, 0) rotate(225deg);
+    }
+    75% {
+        transform: translate(-25px, 25px) rotate(315deg);
+    }
+}
+
+@media (max-width: 768px) {
+    .corner {
+        width: 40px;
+        height: 40px;
+    }
+
+    .corner-tl, .corner-tr {
+        top: 20px;
+    }
+
+    .corner-bl, .corner-br {
+        bottom: 20px;
+    }
+
+    .corner-tl, .corner-bl {
+        left: 20px;
+    }
+
+    .corner-tr, .corner-br {
+        right: 20px;
+    }
+
+    .shape {
+        transform: scale(0.7);
+    }
+    
+    .shape-ring {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .shape-triangle {
+        border-left: 35px solid transparent;
+        border-right: 35px solid transparent;
+        border-bottom: 61px solid rgba(255, 255, 255, 0.4);
+    }
+    
+    .shape-square {
+        width: 56px;
+        height: 56px;
+    }
+}
+

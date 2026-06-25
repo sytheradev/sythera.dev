@@ -1,0 +1,385 @@
+/* Copyright © sythera.dev, 2021-2140. All rights reserved. */
+
+
+*,
+*::before,
+*::after {
+    -webkit-user-drag: none;
+    -webkit-touch-callout: none;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    min-height: 100vh;
+    font-size: 16px;
+    line-height: 1.5;
+    margin: 0;
+    color: #778899;
+    background: #0c0c0c;
+    font-family: 'JetBrains Mono', monospace;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.15) rgba(12, 12, 12, 0.5);
+    position: relative;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    position: relative;
+    z-index: 10;
+}
+
+.container {
+    margin: auto;
+    width: 100%;
+    max-width: 840px;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 255, 255, 0.02);
+}
+
+.title {
+    margin-top: 0;
+    color: rgba(255, 255, 255, 0.9);
+    font-family: 'JetBrains Mono', monospace;
+    min-height: 1.5em;
+    line-height: 1.5;
+}
+
+input[type="text"] {
+    width: 100%;
+    height: 40px;
+    min-height: 40px;
+    margin-bottom: 25px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    outline: none;
+    resize: none;
+    background: rgba(255, 255, 255, 0.02);
+    color: rgba(255, 255, 255, 0.9);
+    font-family: 'JetBrains Mono', monospace;
+    box-sizing: border-box;
+}
+
+input::placeholder {
+    font-family: 'JetBrains Mono', monospace;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    min-height: 40px;
+    margin-right: 10px;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    font-family: 'JetBrains Mono', monospace;
+    background: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.9);
+    cursor: pointer;
+    box-sizing: border-box;
+    white-space: nowrap;
+}
+
+button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.qr-code-container {
+    width: 300px;
+    height: 300px;
+    margin: 25px auto;
+    padding: 15px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    transition: width 0.3s ease, height 0.3s ease;
+    box-sizing: border-box;
+    contain: layout style paint;
+}
+
+.qr-code-container > * {
+    position: relative;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.qr-code-container canvas,
+.qr-code-container img {
+    max-width: 100% !important;
+    max-height: 100% !important;
+    width: auto !important;
+    height: auto !important;
+    object-fit: contain;
+    display: block;
+    position: relative !important;
+    margin: 0 auto;
+}
+
+.qr-code-container.cursor {
+    cursor: not-allowed;
+}
+
+#noQrMessage {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 18px;
+    position: absolute;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.sizeContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.right-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 20px;
+}
+
+.divider {
+    border-right: 3px solid rgba(255, 255, 255, 0.1);
+    margin-left: 20px;
+    margin-right: 20px;
+    flex-shrink: 0;
+}
+
+.left-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 20px;
+}
+
+.left-section #qrInput {
+    width: min(100%, 274px);
+    max-width: 100%;
+}
+
+.sizeContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5px;
+}
+
+.sizeContainer label {
+    margin-right: 10px;
+    color: rgba(255, 255, 255, 0.7);
+    font-family: 'JetBrains Mono', monospace;
+    min-height: 1.2em;
+    line-height: 1.2;
+}
+
+.number-input-container {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+}
+
+#copyButton,
+#generateButton {
+    margin-right: 0px;
+}
+
+#sizeInput {
+    padding: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    width: 60px;
+    height: 35px;
+    min-height: 35px;
+    border-radius: 0px;
+    background: rgba(255, 255, 255, 0.02);
+    cursor: pointer;
+    outline: none;
+    resize: none;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.9);
+    cursor: text;
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+    font-family: 'JetBrains Mono', monospace;
+    box-sizing: border-box;
+}
+
+.number-input-container button {
+    background: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    outline: none;
+    padding: 10px;
+    margin: 0;
+    border-radius: 0px;
+    width: 30px;
+    height: 35px;
+    min-height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    line-height: 1;
+    font-family: 'JetBrains Mono', monospace;
+    box-sizing: border-box;
+}
+
+.number-input-container button:first-child {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.number-input-container button:last-child {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.number-input-container button:disabled {
+    cursor: not-allowed;
+}
+
+.number-input-container button:active:not(:disabled) {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+input[type="number"] {
+    -ms-appearance: none;
+}
+
+
+.notification {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    padding: 15px;
+    border-radius: 5px;
+    z-index: 1000;
+    color: white;
+    font-size: 16px;
+    font-family: monospace;
+    background-color: #e74c3c;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: left;
+    padding-right: 40px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+}
+
+.notification.success {
+    background-color: #27ae60;
+}
+
+.notification.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.closeButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px;
+    margin-top: 0px;
+    margin-right: 0px;
+    font-size: 20px;
+    border: none;
+    transition: background-color 0.3s ease;
+    background: none;
+    color: white;
+    cursor: pointer;
+}
+
+.closeButton:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+}
+
+@keyframes bounceInUp {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, 100%, 0);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.bounceInUp {
+    animation-name: bounceInUp;
+    animation-duration: 0.75s;
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(12, 12, 12, 0.5);
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 3px;
+    transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+* {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.15) rgba(12, 12, 12, 0.5);
+}
+
+/* Copyright © sythera.dev, 2021-2140. All rights reserved. */

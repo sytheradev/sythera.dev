@@ -1,0 +1,138 @@
+<!-- Copyright © sythera.dev, 2021-2140. All rights reserved. -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover">
+    <meta name="theme-color" content="#000">
+
+    <meta property="og:site_name" content="whois/">
+    <meta property="og:description" content="Domain WHOIS Lookup - Check domain registration information">
+    <meta property="og:image:width" content="1920">
+    <meta property="og:image:height" content="1080">
+    <meta property="og:image" content="libraries/yeah.png">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='64' fill='%23000000'/%3E%3Cpath fill='%23ffffff' d='M256.7,259.9l-122.9,103c-3.3,2.8-8.4,0.4-8.4-3.9v-40.1c0-1.5,0.7-2.9,1.9-3.9l70.3-59l-70.3-59c-1.2-0.9-1.9-2.4-1.9-3.9V153c0-4.4,5.1-6.7,8.4-3.9l122.9,103C259.2,254.1,259.2,257.9,256.7,259.9z M386.6,359c0,2.8-2.2,5.1-4.8,5.1H263.4c-2.6,0-4.8-2.3-4.8-5.1v-30.7c0-2.8,2.2-5.1,4.8-5.1h118.4c2.6,0,4.8,2.3,4.8,5.1V359z'/%3E%3C/svg%3E" type="image/svg+xml">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@300;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/background.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/media.css">
+    <link rel="stylesheet" href="../../assets/css/tools-layout.css">
+    <link rel="stylesheet" href="../../assets/css/tools-modal.css">
+
+    <script src="../../assets/javascript/background.js"></script>
+    <script src="../../keybindings.js"></script>
+    <script src="../../assets/javascript/language.js"></script>
+    <script src="../../assets/javascript/tools-modal.js"></script>
+    <script src="assets/javascript/script.js"></script>
+
+    <title>Domain WHOIS Lookup</title>
+</head>
+
+<body>
+    <canvas id="canvas"></canvas>
+    <div class="pixels"></div>
+    <div class="grid"></div>
+    <div class="vignette"></div>
+
+    <div class="corner corner-tl"></div>
+    <div class="corner corner-tr"></div>
+    <div class="corner corner-bl"></div>
+    <div class="corner corner-br"></div>
+
+    <div class="floating-shapes">
+        <div class="shape shape-ring shape-1"></div>
+        <div class="shape shape-ring shape-2"></div>
+        <div class="shape shape-triangle shape-3"></div>
+        <div class="shape shape-square shape-4"></div>
+    </div>
+
+    <div id="errorNotification" class="notification error">
+        <span id="errorMessage"></span>
+        <button class="closeButton">×</button>
+    </div>
+
+    <div class="wrapper">
+        <div class="container">
+            <h1 class="title">Domain WHOIS Lookup</h1>
+
+            <div class="input-container">
+                <input type="text" id="domainInput" placeholder="Enter domain name (e.g., example.com)">
+                <button id="lookupButton">Lookup</button>
+            </div>
+
+            <div id="resultsContainer" class="results-container" style="display: none;">
+                <div class="result-section">
+                    <h3>Domain Information</h3>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <strong>Domain:</strong>
+                            <span id="resultDomain" class="domain-text"></span>
+                        </div>
+                        <div class="info-item">
+                            <strong>Status:</strong>
+                            <span id="resultStatus"></span>
+                        </div>
+                        <div class="info-item">
+                            <strong>Registrar:</strong>
+                            <span id="resultRegistrar"></span>
+                        </div>
+                        <div class="info-item">
+                            <strong>Created:</strong>
+                            <span id="resultCreated"></span>
+                        </div>
+                        <div class="info-item">
+                            <strong>Updated:</strong>
+                            <span id="resultUpdated"></span>
+                        </div>
+                        <div class="info-item">
+                            <strong>Expires:</strong>
+                            <span id="resultExpires"></span>
+                        </div>
+                        <div class="info-item">
+                            <strong>Name Servers:</strong>
+                            <span id="resultNameServers"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="result-section">
+                    <h3>Registrant Information</h3>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <strong>Name:</strong>
+                            <span id="resultRegistrantName"></span>
+                        </div>
+                        <div class="info-item">
+                            <strong>Organization:</strong>
+                            <span id="resultRegistrantOrg"></span>
+                        </div>
+                        <div class="info-item">
+                            <strong>Email:</strong>
+                            <span id="resultRegistrantEmail"></span>
+                        </div>
+                        <div class="info-item">
+                            <strong>Country:</strong>
+                            <span id="resultRegistrantCountry"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="result-section">
+                    <h3>Raw WHOIS Data</h3>
+                    <div id="rawWhoisData" class="raw-whois"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<!-- Copyright © sythera.dev, 2021-2140. All rights reserved. -->
+

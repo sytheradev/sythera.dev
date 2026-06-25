@@ -1,0 +1,534 @@
+/* Copyright © sythera.dev, 2021-2140. All rights reserved. */
+
+
+*,
+*::before,
+*::after {
+    -webkit-user-drag: none;
+    -webkit-touch-callout: none;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-size: 16px;
+    line-height: 1.5;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.9);
+    background: #0c0c0c;
+    font-family: 'JetBrains Mono', monospace;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.15) rgba(12, 12, 12, 0.5);
+    position: relative;
+}
+
+body::-webkit-scrollbar {
+    width: 8px;
+}
+
+body::-webkit-scrollbar-track {
+    background: rgba(12, 12, 12, 0.5);
+}
+
+body::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 4px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    position: relative;
+    z-index: 10;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    width: 100%;
+    max-width: 1100px;
+    padding: 20px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 255, 255, 0.02);
+}
+
+.title {
+    margin-top: 0;
+}
+
+.textarea-container {
+    position: relative;
+    width: 100%;
+    min-width: 0;
+}
+
+.textarea-overlay {
+    display: grid;
+    width: 100%;
+    min-width: 0;
+}
+
+.textarea-overlay > textarea {
+    grid-area: 1 / 1;
+    width: 100%;
+    min-width: 0;
+}
+
+.textarea-row {
+    display: flex;
+    width: 100%;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.textarea-row .textarea-container {
+    flex: 1 1 0;
+    min-width: 0;
+}
+
+#inputText,
+#outputText {
+    width: 100%;
+    height: 300px;
+    min-height: 300px;
+    margin-bottom: 0;
+    padding: 10px 40px 40px 10px;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    outline: none;
+    resize: none;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.15) rgba(12, 12, 12, 0.5);
+    background: rgba(255, 255, 255, 0.02);
+    color: rgba(255, 255, 255, 0.9);
+    font-family: 'JetBrains Mono', monospace;
+    box-sizing: border-box;
+}
+
+#inputText::-webkit-scrollbar,
+#outputText::-webkit-scrollbar {
+    width: 8px;
+}
+
+#inputText::-webkit-scrollbar-track,
+#outputText::-webkit-scrollbar-track {
+    background: rgba(12, 12, 12, 0.5);
+}
+
+#inputText::-webkit-scrollbar-thumb,
+#outputText::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 4px;
+}
+
+#inputText::-webkit-scrollbar-thumb:hover,
+#outputText::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+#inputText::placeholder,
+#outputText::placeholder {
+    font-family: 'JetBrains Mono', monospace;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.textarea-overlay #charCount {
+    grid-area: 1 / 1;
+    align-self: end;
+    justify-self: end;
+    margin: 0 12px 10px 0;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+    font-family: 'JetBrains Mono', monospace;
+    pointer-events: none;
+    z-index: 2;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+.textarea-overlay .icon-button {
+    grid-area: 1 / 1;
+    align-self: start;
+    justify-self: end;
+    margin: 10px 10px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    z-index: 3;
+}
+
+#clearTextButton,
+#copyTextButton {
+    width: 20px;
+    height: 20px;
+    background: none;
+    border: none;
+    opacity: 0.45;
+    filter: brightness(0) invert(1);
+    cursor: pointer;
+    outline: none;
+}
+
+#horizSwapButton {
+    width: 20px;
+    height: 20px;
+    opacity: 0.45;
+    filter: brightness(0) invert(1);
+    pointer-events: none;
+}
+
+.buttonContainer {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    align-items: center;
+    column-gap: 10px;
+    width: 100%;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    min-height: 40px;
+    margin-right: 10px;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    font-family: 'JetBrains Mono', monospace;
+    background: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.9);
+    cursor: pointer;
+    box-sizing: border-box;
+    white-space: nowrap;
+}
+
+button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+#swapButton.icon-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    min-height: 40px;
+    padding: 0;
+    margin: 0;
+    justify-self: center;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+#swapButton.icon-button:hover {
+    background: transparent;
+    border-color: transparent;
+}
+
+
+
+.notification {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    padding: 15px;
+    border-radius: 5px;
+    z-index: 1000;
+    color: white;
+    font-size: 16px;
+    font-family: 'JetBrains Mono', monospace;
+    background-color: #e74c3c;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: left;
+    padding-right: 40px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+}
+
+.notification.success {
+    background-color: #27ae60;
+}
+
+.notification.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.closeButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px;
+    margin-right: 0px;
+    font-size: 20px;
+    border: none;
+    transition: background-color 0.3s ease;
+    background: none;
+    color: white;
+    cursor: pointer;
+}
+
+.closeButton:hover {
+    background-color: rgba(255, 255, 255, 0.0);
+    border-radius: 50%;
+}
+
+@keyframes bounceInUp {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, 100%, 0);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.bounceInUp {
+    animation-name: bounceInUp;
+    animation-duration: 0.75s;
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: rgba(255, 255, 255, 0.02);
+    color: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    padding: 10px;
+    min-height: 40px;
+    font-family: 'JetBrains Mono', monospace;
+    cursor: pointer;
+    font-size: 16px;
+    outline: none;
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+select:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+select::-webkit-scrollbar {
+    width: 8px;
+}
+
+select::-webkit-scrollbar-track {
+    background: rgba(12, 12, 12, 0.5);
+}
+
+select::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 4px;
+}
+
+select::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.buttonContainer .custom-select-wrapper {
+    position: relative;
+    min-width: 250px;
+    width: 250px;
+    max-width: 100%;
+}
+
+.buttonContainer .custom-select-wrapper:first-of-type {
+    justify-self: end;
+}
+
+.buttonContainer .custom-select-wrapper:last-of-type {
+    justify-self: start;
+}
+
+.custom-select {
+    position: relative;
+    width: 100%;
+}
+
+.custom-select-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 35px 10px 12px;
+    min-height: 40px;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.02);
+    color: rgba(255, 255, 255, 0.9);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+    user-select: none;
+}
+
+.custom-select-trigger:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.custom-select-trigger.active {
+    border-color: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.custom-select-value {
+    flex: 1;
+}
+
+.custom-select-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: rgba(255, 255, 255, 0.9);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    padding: 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.custom-select-input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.custom-select-arrow {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 10px;
+    transition: transform 0.3s ease, color 0.3s ease;
+    pointer-events: none;
+}
+
+.custom-select-trigger.active .custom-select-arrow {
+    transform: translateY(-50%) rotate(180deg);
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.custom-select-options {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    min-width: 600px;
+    background: #0c0c0c;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 255, 255, 0.02);
+    max-height: 400px;
+    overflow-y: auto;
+    z-index: 1000;
+    display: none;
+    padding: 10px;
+}
+
+.custom-select-options.open-down {
+    top: calc(100% + 5px);
+    margin-top: 5px;
+    margin-bottom: 0;
+}
+
+.custom-select-options.open-up {
+    bottom: calc(100% + 5px);
+    margin-bottom: 5px;
+    margin-top: 0;
+}
+
+.custom-select-options.active {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+}
+
+.custom-select-optgroup {
+    grid-column: 1 / -1;
+    padding: 8px 15px;
+    color: rgba(255, 255, 255, 0.7);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.02);
+    margin-top: 5px;
+}
+
+.custom-select-optgroup:first-child {
+    margin-top: 0;
+}
+
+.custom-select-option {
+    padding: 10px 12px;
+    color: rgba(255, 255, 255, 0.9);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-radius: 4px;
+    border: 1px solid transparent;
+    text-align: center;
+}
+
+.custom-select-option:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 1);
+}
+
+.custom-select-option.selected {
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 1);
+    font-weight: 500;
+}
+
+.custom-select-options::-webkit-scrollbar {
+    width: 8px;
+}
+
+.custom-select-options::-webkit-scrollbar-track {
+    background: rgba(12, 12, 12, 0.5);
+    border-radius: 4px;
+}
+
+.custom-select-options::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 4px;
+}
+
+.custom-select-options::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+/* Copyright © sythera.dev, 2021-2140. All rights reserved. */

@@ -1,0 +1,101 @@
+<!-- Copyright © sythera.dev, 2021-2140. All rights reserved. -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover">
+    <meta name="theme-color" content="#000">
+
+    <meta property="og:site_name" content="qr/">
+    <meta property="og:description" content="Hello, world! UVIgY29kZQ==">
+    <meta property="og:image:width" content="1920">
+    <meta property="og:image:height" content="1080">
+    <meta property="og:image" content="libraries/yeah.png">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="libraries/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="libraries/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="libraries/icons/favicon-16x16.png">
+    <link rel="manifest" href="libraries/icons/site.webmanifest">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@300;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/background.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/media.css">
+    <link rel="stylesheet" href="../../assets/css/tools-layout.css">
+    <link rel="stylesheet" href="../../assets/css/tools-modal.css">
+
+    <script src="../../assets/javascript/background.js"></script>
+    <script src="../../keybindings.js"></script>
+    <script src="../../assets/javascript/language.js"></script>
+    <script src="../../assets/javascript/tools-modal.js"></script>
+    <script src="libraries/javascript/qrcodegen.js"></script>
+    <script src="assets/javascript/script.js"></script>
+    
+    <title>QR Code Generator</title>
+</head>
+
+<body>
+    <canvas id="canvas"></canvas>
+    <div class="pixels"></div>
+    <div class="grid"></div>
+    <div class="vignette"></div>
+
+    <div class="corner corner-tl"></div>
+    <div class="corner corner-tr"></div>
+    <div class="corner corner-bl"></div>
+    <div class="corner corner-br"></div>
+
+    <div class="floating-shapes">
+        <div class="shape shape-ring shape-1"></div>
+        <div class="shape shape-ring shape-2"></div>
+        <div class="shape shape-triangle shape-3"></div>
+        <div class="shape shape-square shape-4"></div>
+    </div>
+
+    <div id="errorNotification" class="notification error">
+        <span id="errorMessage"></span>
+        <button class="closeButton">×</button>
+    </div>
+
+    <div class="wrapper">
+        <div class="container">
+
+            <div class="left-section">
+                <h1 class="title">QR Code Generator</h1>
+                <input type="text" id="qrInput" placeholder="Enter text or URL...">
+                <button id="generateButton">Generate QR Code</button>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="right-section">
+                <div class="qr-code-container" id="qrContainer">
+                    <p id="noQrMessage">QR code not generated</p>
+                </div>
+
+                <div class="buttonContainer">
+                    <button id="downloadButton">Download QR Code</button>
+                    <button id="copyButton">Copy QR Code</button>
+                </div>
+
+                <div class="sizeContainer">
+                    <label for="sizeText">Enter size:</label>
+                    <div class="number-input-container">
+                        <button id="decreaseButton">-</button>
+                        <input type="number" id="sizeInput" min="200" max="2048" value="200" step="1">
+                        <button id="increaseButton">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<!-- Copyright © sythera.dev, 2021-2140. All rights reserved. -->
