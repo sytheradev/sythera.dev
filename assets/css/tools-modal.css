@@ -77,6 +77,8 @@ body.tools-modal-open {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: nowrap;
+    gap: 12px;
     margin-bottom: 25px;
     padding-bottom: 15px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -143,24 +145,32 @@ body.tools-modal-open {
     font-size: 24px;
     color: rgba(255, 255, 255, 0.9);
     margin: 0;
+    flex: 1 1 auto;
+    min-width: 0;
 }
 
 .tools-modal-close {
-    background: none;
-    border: none;
+    background: none !important;
+    border: none !important;
     color: rgba(255, 255, 255, 0.7);
     font-size: 32px;
     cursor: pointer;
-    padding: 0;
-    width: 44px;
-    height: 44px;
-    min-width: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 44px !important;
+    height: 44px !important;
+    min-width: 44px !important;
+    max-width: 44px !important;
+    min-height: 44px !important;
+    flex: 0 0 auto !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
     transition: color 0.3s ease;
     font-family: 'Space Grotesk', sans-serif;
-    line-height: 1;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+    box-sizing: border-box !important;
     -webkit-tap-highlight-color: transparent;
 }
 
